@@ -8,9 +8,9 @@ spring:
     name: auth-server
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/musicdb
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB_NAME}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASS}
 
 
 jwt:
@@ -25,11 +25,3 @@ jwt:
       hibernate:
         format_sql: true
 
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:6700/eureka
