@@ -1,7 +1,5 @@
-
 server:
-  port:
-    4001
+  port: 4001
 
 spring:
   application:
@@ -12,11 +10,6 @@ spring:
     username: ${POSTGRES_USERNAME}
     password: ${POSTGRES_PASS}
 
-
-jwt:
-  secret: NagmaKoiGungunaneKaMausamAayaHaiPalkonPeKhwaabSajaaneKaMausamAayaHai
-
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -24,4 +17,7 @@ jwt:
     properties:
       hibernate:
         format_sql: true
+
+jwt:
+  secret: NagmaKoiGungunaneKaMausamAayaHaiPalkonPeKhwaabSajaaneKaMausamAayaHai
 
