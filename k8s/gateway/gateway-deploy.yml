@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-deployment
+  labels:
+    app: gateway-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gateway-server
+  template:
+    metadata:
+      labels:
+        app: gateway-server
+    spec:
+      containers:
+      - name: gateway-server
+        image: masteradios123/spring-gateway
+        envFrom:
+          - configMapRef:
+              name: gateway-server-config
+        ports:
+        - containerPort: 4000

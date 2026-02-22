@@ -1,6 +1,5 @@
 package com.example.api_gateway.config;
 
-import org.springframework.cloud.client.loadbalancer.reactive.LoadBalancedExchangeFilterFunction;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -9,8 +8,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class WebClientConfig {
 
     @Bean
-    public WebClient.Builder webClientBuilder(LoadBalancedExchangeFilterFunction lbFunction) {
-        return WebClient.builder().filter(lbFunction);
+    public WebClient.Builder webClientBuilder() {
+        return WebClient.builder();
     }
 }
 

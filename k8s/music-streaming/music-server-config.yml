@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: music-server-config
+  labels:
+    app: music-server
+data:
+  KAFKA_HOST: http://kafka-service
+  KAFKA_PORT: "29092"
+  ELASTICSEARCH_HOST: elasticsearch-service
+  ELASTICSEARCH_PORT: "9200"  

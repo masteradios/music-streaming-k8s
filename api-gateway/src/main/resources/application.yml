@@ -5,7 +5,7 @@ server:
 
 auth:
   service:
-    url : lb://auth-server
+    url : ${AUTH_SERVICE_URL}
 
 spring:
   application:
@@ -25,7 +25,7 @@ spring:
           globalcors:
             corsConfigurations:
               '[/**]':
-                allowedOrigins: "http://localhost:5173"
+                allowedOrigins: ${FRONT_END_URL}
                 allowedMethods:
                   - GET
                   - POST
@@ -36,34 +36,18 @@ spring:
 
           routes:
             - id: MUSIC-SERVICE
-              uri: lb://music-streaming
+              uri: ${MUSIC_SERVICE_URL}
               predicates:
                 - Path=/music/**
               filters:
                 - JwtValidation
 
             - id: AUTH-SERVICE
-              uri: lb://auth-server
+              uri: ${AUTH_SERVICE_URL}
               predicates:
                 - Path=/auth/**
-
-
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
 
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
 
-
-
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:6700/eureka

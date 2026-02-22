@@ -1,7 +1,5 @@
 package com.example.auth_server.config;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,9 +9,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.example.auth_server.jwt.AuthEntryPointJwt;
 
@@ -27,7 +22,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                //.cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(authEntryPointJwt))
                 .authorizeHttpRequests(authorize ->
@@ -39,28 +34,28 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
+    // @Bean
+    // public CorsConfigurationSource corsConfigurationSource() {
+    //     CorsConfiguration config = new CorsConfiguration();
 
    
-        config.setAllowedOrigins(List.of(
-                "http://front-end-server:5173",
-                "http://localhost:3000"
-        ));
+    //     config.setAllowedOrigins(List.of(
+    //             "http://front-end-server:5173",
+    //             "http://localhost:3000"
+    //     ));
 
-        config.setAllowedMethods(List.of(
-                "GET", "POST", "PUT", "DELETE", "OPTIONS"
-        ));
+    //     config.setAllowedMethods(List.of(
+    //             "GET", "POST", "PUT", "DELETE", "OPTIONS"
+    //     ));
 
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true);
+    //     config.setAllowedHeaders(List.of("*"));
+    //     config.setAllowCredentials(true);
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
+    //     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    //     source.registerCorsConfiguration("/**", config);
 
-        return source;
-    }
+    //     return source;
+    // }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
