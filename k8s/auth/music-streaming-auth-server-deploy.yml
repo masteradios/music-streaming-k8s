@@ -19,6 +19,6 @@ spec:
         image: masteradios123/music-streaming-auth-server
         envFrom:
           - configMapRef:
-              name: postgres-config
+              name: auth-server-config
         ports:
         - containerPort: 4001
