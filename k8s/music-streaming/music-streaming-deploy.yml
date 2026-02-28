@@ -14,11 +14,19 @@ spec:
       labels:
         app: music-server
     spec:
+      volumes:
+        - name: songs-data
+          persistentVolumeClaim: 
+            claimName: songs-pvc
       containers:
       - name: music-server
         image: masteradios123/music-streaming-music-server
         envFrom:
           - configMapRef:
               name: music-server-config
+        
+        volumeMounts:                 # indicates which Volume (from spec.template.spec.volumes) should be used
+          - name: songs-data                # name of the Volume
+            mountPath: /app/sg         
         ports:
         - containerPort: 4002

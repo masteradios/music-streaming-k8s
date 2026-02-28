@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-insert-index-in-elasticsearch
+spec:
+  template:
+    spec:
+      volumes:
+        - name: elastic-index-script
+          persistentVolumeClaim: 
+            claimName: local-pvc
+
+      containers:
+      - name: container-insert-index
+        image: curlimages/curl:8.6.0
+        command: ["/bin/sh", "-c","sh","/data/init-index.sh"]
+             
+      
+        volumeMounts:                 # indicates which Volume (from spec.template.spec.volumes) should be used
+          - name: elastic-index-script                # name of the Volume
+            mountPath: /data
+      restartPolicy: Never
+  backoffLimit: 4
