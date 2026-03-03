@@ -4,7 +4,7 @@ A microservice-oriented backend system for streaming music, built using **Spring
 
 ---
 
-./k8s5.png
+[System Architecture](k8s5.png)
 
 ## Video :
 
