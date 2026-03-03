@@ -9,7 +9,7 @@ A microservice-oriented backend system for streaming music, built using **Spring
 ## Video :
 
 
-![System Architecture](./impl.mp4)
+![System Video(./impl.mp4)
 
 
 ## 🚀 Features
