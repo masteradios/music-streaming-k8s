@@ -1,53 +1,46 @@
 server:
   port:
-    4000
+    4001
 
-
-auth:
-  service:
-    url : ${AUTH_SERVICE_URL}
 
 spring:
   application:
     name: api-gateway
 
-
   cloud:
     gateway:
 
-      server:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: ${FRONT_END_URL}
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowedHeaders: "*"
+            allowCredentials: true
 
+      routes:
+        - id: music-service
+          uri: ${MUSIC_SERVICE_URL}
+          predicates:
+            - Path=/api/music/**
+          filters:
+            - StripPrefix=1
+            - JwtValidation
 
+        - id: auth-service
+          uri: ${AUTH_SERVICE_URL}
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=1
 
-        webflux:
-
-
-          globalcors:
-            corsConfigurations:
-              '[/**]':
-                allowedOrigins: ${FRONT_END_URL}
-                allowedMethods:
-                  - GET
-                  - POST
-                  - PUT
-                  - DELETE
-                allowedHeaders: "*"
-                allowCredentials: true
-
-          routes:
-            - id: MUSIC-SERVICE
-              uri: ${MUSIC_SERVICE_URL}
-              predicates:
-                - Path=/music/**
-              filters:
-                - JwtValidation
-
-            - id: AUTH-SERVICE
-              uri: ${AUTH_SERVICE_URL}
-              predicates:
-                - Path=/auth/**
-
-logging:
-  level:
-    org.springframework.cloud.gateway: DEBUG
-
+        - id: user-service
+          uri: ${USER_SERVICE_URL}
+          predicates:
+            - Path=/api/user/**
+          filters:
+            - StripPrefix=1

@@ -5,7 +5,7 @@ metadata:
   labels:
     app: gateway-server
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: gateway-server
@@ -21,4 +21,4 @@ spec:
           - configMapRef:
               name: gateway-server-config
         ports:
-        - containerPort: 4000
+        - containerPort: 4001

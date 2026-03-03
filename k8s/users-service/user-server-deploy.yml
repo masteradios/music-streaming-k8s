@@ -1,32 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: music-server-deployment
+  name: user-server-deployment
   labels:
-    app: music-server
+    app: user-server
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: music-server
+      app: user-server
   template:
     metadata:
       labels:
-        app: music-server
+        app: user-server
     spec:
       volumes:
         - name: songs-data
           persistentVolumeClaim: 
             claimName: songs-pvc
       containers:
-      - name: music-server
-        image: masteradios123/music-streaming-music-server
+      - name: user-server
+        image: masteradios123/music-streaming-user-server
         envFrom:
           - configMapRef:
-              name: music-server-config
+              name: user-server-config
         
         volumeMounts:                 
           - name: songs-data                
             mountPath: /app/sg         
         ports:
-        - containerPort: 4002
+        - containerPort: 4003

@@ -6,5 +6,5 @@ metadata:
     app: gateway-server
 data:
   AUTH_SERVICE_URL: http://auth-service:4001
-  FRONT_END_URL: http://localhost:5173
+  FRONT_END_URL: http://myapp.local
   MUSIC_SERVICE_URL: http://music-service:4002

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim: 
+            claimName: local-pvc
+      containers:
+        - name: redis
+          image: redis:8.4.2-trixie
+          ports:
+            - containerPort: 6379
+          # envFrom:
+          #   - configMapRef:
+          #       name: redis-config
+          volumeMounts:                 # indicates which Volume (from spec.template.spec.volumes) should be used
+            - name: redis-data                # name of the Volume
+              mountPath: /data
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
