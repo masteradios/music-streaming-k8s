@@ -8,8 +8,9 @@ A microservice-oriented backend system for streaming music, built using **Spring
 
 ## Video :
 
-
-[System Video](./impl.mp4)
+<video src="./impl.mp4" controls style="max-width: 100%;">
+  Your browser does not support the video tag.
+</video>
 
 ## 🚀 Features
 
