@@ -5,7 +5,8 @@ A microservice-oriented backend system for streaming music, built using **Spring
 ---
 
 
-![impl](https://github.com/user-attachments/assets/98c39a08-1305-4666-a9ff-c4ee30cca91a)
+<img width="5296" height="2749" alt="k8s5" src="https://github.com/user-attachments/assets/476134a5-b70c-4af7-b86d-711613d5ca45" />
+
 
 ## Video :
 
